@@ -1,7 +1,5 @@
 /**
  * Top-level build file for ftc_app project.
- *
- * It is extraordinarily rare that you will ever need to edit this file.
  */
 
 buildscript {
@@ -18,7 +16,7 @@ plugins {
 }
 
 // This is now required because aapt2 has to be downloaded from the
-// google() repository beginning with version 3.2 of the Android Gradle Plugin
+// google() repository beginning with version 3.2 of the Android Gradle Plugin.
 allprojects {
     repositories {
         mavenCentral()
@@ -28,4 +26,37 @@ allprojects {
 
 repositories {
     mavenCentral()
+    google()
+}
+
+// ---------------------------------------------------------------------------
+// Simulator task (JavaExec / Desktop)
+//
+// The virtual-robot-simulator JAR is intentionally kept OUT of the Android
+// (robot APK) build by only referencing it on the task classpath below, never
+// as a standard "implementation" dependency, so the APK stays small. It is
+// run only via `./gradlew runSimulator`.
+//
+// Canonical main class for the simulator JAR:
+//   virtual_robot.controller.VirtualRobotApplication
+// ---------------------------------------------------------------------------
+def simulatorJar = files("${rootDir}/libs/simulator/virtual-robot-simulator-1.5.0-SNAPSHOT.jar")
+def teamCodeClasses = files("${rootDir}/TeamCode/build/intermediates/javac/debug/classes")
+def simulatorDir = files("${rootDir}/libs/simulator")
+def libsDir = files("${rootDir}/libs")
+def buildDir = files("${rootDir}/TeamCode/build")
+
+// Construct an extremely broad classpath to ensure every possible path is covered
+def broadClasspath = simulatorJar + 
+                      simulatorDir + 
+                      libsDir + 
+                      buildDir + 
+                      teamCodeClasses + 
+                      files("${rootDir}/TeamCode/build/intermediates/javac/release/classes")
+
+task runSimulator(type: JavaExec) {
+    mainClass = 'virtual_robot.controller.VirtualRobotApplication'
+    
+    // Use the broad classpath to catch both debug and release compiled classes
+    classpath = broadClasspath
 }
