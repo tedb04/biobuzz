@@ -12,7 +12,9 @@ exit /b 1
 
 echo JAVA_HOME value is: %JAVA_HOME%
 if "%JAVA_HOME%"=="" (
-    echo WARNING: JAVA_HOME is not set.
+    echo WARNING: JAVA_HOME is not set. Attempting to set default...
+    set JAVA_HOME=%USERPROFILE%\.jdks\liberica-full-17.0.21
+    echo Set JAVA_HOME to: %JAVA_HOME%
 )
 
 :FOUND_GRADLEW
