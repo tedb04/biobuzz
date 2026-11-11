@@ -5,7 +5,7 @@ REM
 REM Ensure we run with the bundled Gradle wrapper, from the project root.
 
 echo DEBUG: Checking gradlew.bat
-if exist "gradlew.bat" goto FOUND_GRADLEW
+if exist "gradlew.bat" (goto FOUND_GRADLEW)
 echo ERROR: Gradle wrapper (gradlew.bat) not found. Please run from the project root.
 pause
 exit /b 1
