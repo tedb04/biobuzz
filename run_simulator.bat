@@ -12,7 +12,7 @@ if not exist "gradlew.bat" (
 SET SIM_JAR=libs\simulator\virtual-robot-simulator-1.5.0-SNAPSHOT.jar
 SET RAW_URL=https://github.com/tedb04/virtual_robot/raw/refs/heads/feature/make_library/repo/com/github/tedb04/virtual_robot_simulator/1.5.0-SNAPSHOT/virtual-robot-simulator-1.5.0-SNAPSHOT.jar
 
-if not exist %SIM_JAR% (
+if not exist "%SIM_JAR%" (
     echo Simulator JAR not found or is empty. Downloading...
     if not exist "libs\simulator" mkdir "libs\simulator"
     
