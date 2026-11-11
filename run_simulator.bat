@@ -5,12 +5,11 @@ REM
 REM Ensure we run with the bundled Gradle wrapper, from the project root.
 echo DEBUG: Checking gradlew.bat
 if exist "gradlew.bat" (
-    goto :FOUND_GRADLEW
-) else (
-    echo ERROR: Gradle wrapper (gradlew.bat) not found. Please run from the project root.
-    pause
-    exit /b 1
+    goto FOUND_GRADLEW
 )
+echo ERROR: Gradle wrapper (gradlew.bat) not found. Please run from the project root.
+pause
+exit /b 1
 :FOUND_GRADLEW
 
 SET SIM_JAR=libs\simulator\virtual-robot-simulator-1.5.0-SNAPSHOT.jar
