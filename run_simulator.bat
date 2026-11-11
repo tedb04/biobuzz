@@ -3,14 +3,9 @@ REM --- Simulator Launcher for use on Windows.
 REM Runs the FTC CI virtual-robot-simulator, using your TeamCode sources.
 REM
 REM Ensure we run with the bundled Gradle wrapper, from the project root.
-@echo off
-REM --- Simulator Launcher for use on Windows.
-REM Runs the FTC CI virtual-robot-simulator, using your TeamCode sources.
-REM
-REM Ensure we run with the bundled Gradle wrapper, from the project root.
 
 echo DEBUG: Checking gradlew.bat
-if exist "gradlew.bat" goto :FOUND_GRADLEW
+for %%F in (gradlew.bat) do if exist %%F goto :FOUND_GRADLEW
 echo ERROR: Gradle wrapper (gradlew.bat) not found. Please run from the project root.
 pause
 exit /b 1
