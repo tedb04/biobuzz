@@ -10,6 +10,11 @@ echo ERROR: Gradle wrapper (gradlew.bat) not found. Please run from the project 
 pause
 exit /b 1
 
+echo JAVA_HOME value is: %JAVA_HOME%
+if "%JAVA_HOME%"=="" (
+    echo WARNING: JAVA_HOME is not set.
+)
+
 :FOUND_GRADLEW
 set SIM_JAR=libs\simulator\virtual-robot-simulator-1.5.0-SNAPSHOT.jar
 set RAW_URL=https://github.com/tedb04/virtual_robot/raw/refs/heads/feature/make_library/repo/com/github/tedb04/virtual_robot_simulator/1.5.0-SNAPSHOT/virtual-robot-simulator-1.5.0-SNAPSHOT.jar
