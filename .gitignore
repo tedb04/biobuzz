@@ -82,3 +82,4 @@ lint/tmp/
 
 # vscode
 .vscode/
+/libs/simulator/
