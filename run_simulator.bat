@@ -42,4 +42,5 @@ if %errorlevel% neq 0 (
 )
 
 echo Running the simulator task: gradlew.bat runSimulator
+set OP_MODE_PACKAGE=org.firstinspires.ftc.teamcode
 call gradlew.bat runSimulator
