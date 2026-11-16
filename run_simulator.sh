@@ -22,11 +22,8 @@ if [ ! -f "$SIM_JAR" ] || [ ! -s "$SIM_JAR" ]; then
         mv virtual-robot-simulator-1.5.0-SNAPSHOT.jar "$SIM_JAR"
         echo "Successfully downloaded simulator JAR using curl -L -O."
     else
-        echo "curl failed, trying wget..."
-        if ! wget -O "$SIM_JAR" "$RAW_URL"; then
-            echo "ERROR: Failed to download the simulator JAR using wget."
-            exit 1
-        fi
+        echo "curl failed"
+        exit 1
     fi
 fi
 

@@ -19,18 +19,14 @@ if "%JAVA_HOME%"=="" (
 
 :FOUND_GRADLEW
 set SIM_JAR=libs\simulator\virtual-robot-simulator-1.5.0-SNAPSHOT.jar
-set RAW_URL=https://github.com/tedb04/virtual_robot/raw/refs/heads/feature/make_library/repo/com/github/tedb04/virtual_robot_simulator/virtual-robot-simulator-1.5.0-SNAPSHOT.jar
+set RAW_URL=https://github.com/tedb04/virtual_robot/raw/refs/heads/feature/make_library/repo/com/github/tedb04/virtual-robot-simulator/virtual-robot-simulator-1.5.0-SNAPSHOT.jar
 
 echo DEBUG: Checking SIM_JAR: %SIM_JAR%
 if not exist "%SIM_JAR%" (
     echo Simulator JAR not found or is empty. Downloading...
     if not exist "libs\simulator" mkdir "libs\simulator"
     echo Downloading using wget...
-    wget -O "%SIM_JAR%" "%RAW_URL%"
-    if errorlevel 1 (
-        echo wget failed, trying curl...
-        curl -L -o "%SIM_JAR%" "%RAW_URL%" -H "User-Agent: curl/7.68.0" -H "Accept: */*"
-    )
+    curl -LJ -o "%SIM_JAR%" "%RAW_URL%" -H "User-Agent: curl/7.68.0" -H "Accept: */*"
 )
 
 echo Building TeamCode module...

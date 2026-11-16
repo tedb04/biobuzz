@@ -43,29 +43,23 @@ repositories {
 //   virtual_robot.controller.VirtualRobotApplication
 // ---------------------------------------------------------------------------
 def simulatorJar = files("${rootDir}/libs/simulator/virtual-robot-simulator-1.5.0-SNAPSHOT.jar")
-def teamCodeClasses = files("${rootDir}/TeamCode/build/intermediates/javac/debug/classes")
-def simulatorDir = files("${rootDir}/libs/simulator")
-def libsDir = files("${rootDir}/libs")
-def buildDir = files("${rootDir}/TeamCode/build")
-def virtualRobotDir = files("${rootDir}/virtual_robot")
-
-// Construct an extremely broad classpath to ensure every possible path is covered
-def broadClasspath = files(
-    "${rootDir}/libs/simulator/virtual-robot-simulator-1.5.0-SNAPSHOT.jar",
-    "${rootDir}/libs/simulator",
-    "${rootDir}/libs",
-    "${rootDir}/TeamCode/build",
-    "${rootDir}/virtual_robot",
-    "${rootDir}/TeamCode/build/intermediates/javac/debug/classes",
-    "${rootDir}/TeamCode/build/intermediates/javac/release/classes"
-)
+def teamCodeDebugClasses = files("${rootDir}/TeamCode/build/intermediates/javac/debug/classes")
+def teamCodeReleaseClasses = files("${rootDir}/TeamCode/build/intermediates/javac/release/classes")
 
 task runSimulator(type: JavaExec) {
     mainClass = "virtual_robot.controller.VirtualRobotApplication"
-    
-    // Use the broad classpath to catch both debug and release compiled classes
-    classpath = broadClasspath
-    
-    // Ensure the JVM handles the classpath correctly
+
+    doFirst {
+        def classpathFiles = []
+        classpathFiles << simulatorJar
+        classpathFiles << new File("${rootDir}/virtual_robot")
+
+        // Instead of collecting every file, just add the root class folders
+        classpathFiles << new File("${rootDir}/TeamCode/build/intermediates/javac/debug/classes")
+        classpathFiles << new File("${rootDir}/TeamCode/build/intermediates/javac/release/classes")
+
+        classpath = files(classpathFiles)
+    }
+
     jvmArgs = ["-Xmx1g"]
 }
