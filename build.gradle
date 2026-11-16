@@ -50,13 +50,15 @@ def buildDir = files("${rootDir}/TeamCode/build")
 def virtualRobotDir = files("${rootDir}/virtual_robot")
 
 // Construct an extremely broad classpath to ensure every possible path is covered
-def broadClasspath = simulatorJar + 
-                       simulatorDir + 
-                       libsDir + 
-                       buildDir + 
-                       virtualRobotDir +
-                       teamCodeClasses + 
-                       files("${rootDir}/TeamCode/build/intermediates/javac/release/classes")
+def broadClasspath = files(
+    simulatorJar,
+    simulatorDir,
+    libsDir,
+    buildDir,
+    virtualRobotDir,
+    teamCodeClasses,
+    files("${rootDir}/TeamCode/build/intermediates/javac/release/classes")
+)
 
 task runSimulator(type: JavaExec) {
     mainClass = "virtual_robot.controller.VirtualRobotApplication"
