@@ -51,13 +51,13 @@ def virtualRobotDir = files("${rootDir}/virtual_robot")
 
 // Construct an extremely broad classpath to ensure every possible path is covered
 def broadClasspath = files(
-    simulatorJar,
-    simulatorDir,
-    libsDir,
-    buildDir,
-    virtualRobotDir,
-    teamCodeClasses,
-    files("${rootDir}/TeamCode/build/intermediates/javac/release/classes")
+    "${rootDir}/libs/simulator/virtual-robot-simulator-1.5.0-SNAPSHOT.jar",
+    "${rootDir}/libs/simulator",
+    "${rootDir}/libs",
+    "${rootDir}/TeamCode/build",
+    "${rootDir}/virtual_robot",
+    "${rootDir}/TeamCode/build/intermediates/javac/debug/classes",
+    "${rootDir}/TeamCode/build/intermediates/javac/release/classes"
 )
 
 task runSimulator(type: JavaExec) {
@@ -65,4 +65,7 @@ task runSimulator(type: JavaExec) {
     
     // Use the broad classpath to catch both debug and release compiled classes
     classpath = broadClasspath
+    
+    // Ensure the JVM handles the classpath correctly
+    jvmArgs = ["-Xmx1g"]
 }
