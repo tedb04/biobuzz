@@ -58,7 +58,7 @@ def broadClasspath = files(
     "${rootDir}/virtual_robot",
     "${rootDir}/TeamCode/build/intermediates/javac/debug/classes",
     "${rootDir}/TeamCode/build/intermediates/javac/release/classes"
-).collect { it.isDirectory ? it : it.javaFile }
+)
 
 task runSimulator(type: JavaExec) {
     mainClass = "virtual_robot.controller.VirtualRobotApplication"
