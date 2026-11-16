@@ -40,4 +40,5 @@ fi
 
 # Run the simulator task: ./gradlew runSimulator
 export OP_MODE_PACKAGE="org.firstinspires.ftc.teamcode"
+./gradlew :TeamCode:assembleDebug
 ./gradlew runSimulator
