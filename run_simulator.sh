@@ -11,7 +11,7 @@ fi
 
 SIM_JAR="libs/simulator/virtual-robot-simulator-1.5.0-SNAPSHOT.jar"
 # The specific URL you confirmed works
-RAW_URL="https://github.com/tedb04/virtual_robot/raw/refs/heads/feature/make_library/repo/com/github/tedb04/virtual-robot-simulator/1.5.0-SNAPSHOT/virtual-robot-simulator-1.5.0-SNAPSHOT.jar"
+RAW_URL="https://github.com/tedb04/virtual_robot/raw/refs/heads/feature/make_library/repo/com/github/tedb04/virtual-robot-simulator/virtual-robot-simulator-1.5.0-SNAPSHOT.jar"
 
 if [ ! -f "$SIM_JAR" ] || [ ! -s "$SIM_JAR" ]; then
     echo "Simulator JAR not found or is empty. Downloading..."

@@ -19,7 +19,7 @@ if "%JAVA_HOME%"=="" (
 
 :FOUND_GRADLEW
 set SIM_JAR=libs\simulator\virtual-robot-simulator-1.5.0-SNAPSHOT.jar
-set RAW_URL=https://github.com/tedb04/virtual_robot/raw/refs/heads/feature/make_library/repo/com/github/tedb04/virtual_robot_simulator/1.5.0-SNAPSHOT/virtual-robot-simulator-1.5.0-SNAPSHOT.jar
+set RAW_URL=https://github.com/tedb04/virtual_robot/raw/refs/heads/feature/make_library/repo/com/github/tedb04/virtual_robot_simulator/virtual-robot-simulator-1.5.0-SNAPSHOT.jar
 
 echo DEBUG: Checking SIM_JAR: %SIM_JAR%
 if not exist "%SIM_JAR%" (
