@@ -44,6 +44,7 @@ if [ "$FILE_SIZE" -lt 500000 ]; then
 fi
 
 # Run the simulator task: ./gradlew runSimulator
-export OP_MODE_PACKAGE="org.firstinspires.ftc.teamcode"
+export OP_MODE_PACKAGE="org.firstinspires.ftc.teamcode.opmode"
+export USE_VIRTUAL_GAMEPAD="true"
 ./gradlew :TeamCode:assembleDebug
 ./gradlew runSimulator

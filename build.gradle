@@ -54,12 +54,20 @@ task runSimulator(type: JavaExec) {
         classpathFiles << simulatorJar
         classpathFiles << new File("${rootDir}/virtual_robot")
 
-        // Instead of collecting every file, just add the root class folders
-        classpathFiles << new File("${rootDir}/TeamCode/build/intermediates/javac/debug/classes")
-        classpathFiles << new File("${rootDir}/TeamCode/build/intermediates/javac/release/classes")
+        [file("${rootDir}/TeamCode/build"), file("${rootDir}/FtcRobotController/build")].each { buildDir ->
+            if (buildDir.exists()) {
+                buildDir.eachDirRecurse { dir ->
+                    if (dir.name == "classes" && dir.absolutePath.contains("/intermediates/javac/release/")) {
+                        classpathFiles << dir
+                    }
+                }
+            }
+        }
 
         classpath = files(classpathFiles)
     }
 
     jvmArgs = ["-Xmx1g"]
 }
+
+
