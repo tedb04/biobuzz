@@ -9,6 +9,14 @@ if [ ! -x "./gradlew" ]; then
     exit 1
 fi
 
+# Find the Liberica Full JDK directory inside ~/.jdks
+LIBERICA_DIR=$(find "$HOME/.jdks" -maxdepth 1 -type d -name "liberica-full-*" | head -n 1)
+
+if [ -n "$LIBERICA_DIR" ]; then
+    export JAVA_HOME="$LIBERICA_DIR"
+    export PATH="$JAVA_HOME/bin:$PATH"
+fi
+
 SIM_JAR="libs/simulator/virtual-robot-simulator-1.5.0-SNAPSHOT.jar"
 # The specific URL you confirmed works
 RAW_URL="https://github.com/tedb04/virtual_robot/raw/refs/heads/feature/make_library/repo/com/github/tedb04/virtual-robot-simulator/virtual-robot-simulator-1.5.0-SNAPSHOT.jar"
